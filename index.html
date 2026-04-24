@@ -1,195 +1,128 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>خدماتي</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 body {
-  margin:0;
-  font-family:'Cairo', sans-serif;
-  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  color:white;
-  overflow-x:hidden;
-}
-
-/* حركة عامة */
-.hidden {
-  opacity:0;
-  transform:translateY(50px);
-  transition: all 0.8s ease;
-}
-.show {
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* container */
-.container {
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-  text-align:center;
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  text-align: center;
 }
 
 /* العنوان */
-h1 {
-  font-size:40px;
+.container {
+  padding: 60px 20px;
 }
 
-/* زر */
-.btn {
-  background:linear-gradient(45deg,#00c9a7,#92fe9d);
-  padding:15px 35px;
-  border-radius:30px;
-  display:inline-block;
-  margin:20px 0;
-  text-decoration:none;
-  color:white;
-  transition:0.3s;
+h1 {
+  font-size: 40px;
 }
-.btn:hover {
-  transform:scale(1.1);
-  box-shadow:0 0 20px #00c9a7;
+
+.btn {
+  margin-top: 20px;
+  padding: 15px 30px;
+  background: #00c896;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 /* الكروت */
 .cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 40px;
 }
 
 .card {
-  background:rgba(0,0,0,0.5);
-  padding:20px;
-  border-radius:20px;
-  transition:0.3s;
-}
-.card:hover {
-  transform:translateY(-10px) scale(1.03);
+  background: rgba(0,0,0,0.4);
+  padding: 20px;
+  border-radius: 15px;
+  width: 250px;
 }
 
-/* سلايدر */
+/* ===== السلايدر ===== */
 .slider {
-  position:relative;
-  margin-top:40px;
-  overflow:hidden;
+  margin-top: 60px;
+  overflow: hidden;
+  width: 100%;
 }
 
 .slides {
-  display:flex;
-  transition:0.5s;
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+  justify-content: center;
 }
 
 .slides img {
-  width:100%;
-  max-width:300px;
-  margin:10px;
-  border-radius:20px;
-}
-
-/* أزرار السلايدر */
-.controls {
-  margin-top:10px;
-}
-.controls button {
-  padding:10px;
-  border:none;
-  background:#00c9a7;
-  color:white;
-  border-radius:10px;
-  cursor:pointer;
+  width: 180px;
+  height: 350px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
-
-<h1 class="hidden">تطبيق خدماتي</h1>
-<p class="hidden">منصة ذكية للوصول إلى الخدمات بسهولة</p>
-
-<a class="btn hidden">تحميل التطبيق</a>
+  <h1>تطبيق خدماتي</h1>
+  <p>منصة لتسهيل الوصول إلى الخدمات بسهولة</p>
+  <button class="btn">تحميل التطبيق</button>
+</div>
 
 <div class="cards">
+  <div class="card">
+    <h3>🚀 السرعة</h3>
+    <p>تنفيذ سريع وسهل</p>
+  </div>
 
-<div class="card hidden">
-<h2>📌 نبذة</h2>
-<p>يوفر التطبيق خدمات متعددة بطريقة سهلة.</p>
+  <div class="card">
+    <h3>⚡ المميزات</h3>
+    <p>تصفح - طلب - متابعة</p>
+  </div>
+
+  <div class="card">
+    <h3>📌 نبذة</h3>
+    <p>يوفر التطبيق خدمات متعددة بسهولة</p>
+  </div>
 </div>
 
-<div class="card hidden">
-<h2>⚡ المميزات</h2>
-<p>✔ تصفح</p>
-<p>✔ طلب</p>
-<p>✔ متابعة</p>
-</div>
+<h2 style="margin-top:50px;">📱 صور التطبيق</h2>
 
-<div class="card hidden">
-<h2>🚀 السرعة</h2>
-<p>تنفيذ سريع وواجهة سهلة.</p>
-</div>
-
-</div>
-
-<!-- سلايدر الصور -->
-<div class="slider hidden">
-<h2>📱 من صور التطبيق</h2>
-
-<div class="slides" id="slides">
-<img src="screen1.png.jpeg">
-<img src="screen2.png.jpeg">
-<img src="screen3.png.jpeg">
-  <img src="screen4.png.jpeg">
-</div>
-
-<div class="controls">
-<button onclick="next()">التالي</button>
-<button onclick="prev()">السابق</button>
-</div>
-
-</div>
-
+<div class="slider">
+  <div class="slides" id="slides">
+    <img src="screen1.png.jpeg">
+    <img src="screen2.png.jpeg">
+    <img src="screen3.png.jpeg">
+    <img src="screen4.png.jpeg">
+  </div>
 </div>
 
 <script>
+let index = 0;
+const slides = document.getElementById("slides");
+const total = slides.children.length;
 
-/* انيميشن عند النزول */
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
-  });
-});
-
-document.querySelectorAll(".hidden").forEach(el=>{
-  observer.observe(el);
-});
-
-/* سلايدر */
-let index=0;
-function next(){
+setInterval(() => {
   index++;
-  move();
-}
-function prev(){
-  index--;
-  move();
-}
-function move(){
-  const slides=document.getElementById("slides");
-  if(index<0) index=0;
-  if(index>2) index=2;
-  slides.style.transform=`translateX(-${index*320}px)`;
-}
-
+  if (index >= total) {
+    index = 0;
+  }
+  slides.style.transform = `translateX(-${index * 200}px)`;
+}, 1000);
 </script>
 
 </body>
