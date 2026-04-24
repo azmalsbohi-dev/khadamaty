@@ -2,34 +2,108 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>خدماتي</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 body {
-  background: #0f2027;
-  color: white;
-  font-family: Arial;
-  text-align: center;
+  margin:0;
+  font-family:'Cairo', sans-serif;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
+  overflow-x:hidden;
 }
+
+/* حركة عامة */
+.hidden {
+  opacity:0;
+  transform:translateY(50px);
+  transition: all 0.8s ease;
+}
+.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* container */
 .container {
-  padding: 30px;
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+  text-align:center;
 }
+
+/* العنوان */
 h1 {
-  font-size: 28px;
+  font-size:40px;
 }
+
+/* زر */
 .btn {
-  background: #00c9a7;
-  padding: 15px;
-  border-radius: 10px;
-  color: white;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 20px;
+  background:linear-gradient(45deg,#00c9a7,#92fe9d);
+  padding:15px 35px;
+  border-radius:30px;
+  display:inline-block;
+  margin:20px 0;
+  text-decoration:none;
+  color:white;
+  transition:0.3s;
 }
+.btn:hover {
+  transform:scale(1.1);
+  box-shadow:0 0 20px #00c9a7;
+}
+
+/* الكروت */
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
 .card {
-  background: #1c1c1c;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 15px;
+  background:rgba(0,0,0,0.5);
+  padding:20px;
+  border-radius:20px;
+  transition:0.3s;
+}
+.card:hover {
+  transform:translateY(-10px) scale(1.03);
+}
+
+/* سلايدر */
+.slider {
+  position:relative;
+  margin-top:40px;
+  overflow:hidden;
+}
+
+.slides {
+  display:flex;
+  transition:0.5s;
+}
+
+.slides img {
+  width:100%;
+  max-width:300px;
+  margin:10px;
+  border-radius:20px;
+}
+
+/* أزرار السلايدر */
+.controls {
+  margin-top:10px;
+}
+.controls button {
+  padding:10px;
+  border:none;
+  background:#00c9a7;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -38,24 +112,84 @@ h1 {
 
 <div class="container">
 
-<h1>تطبيق خدماتي</h1>
-<p>منصة لتسهيل الوصول إلى الخدمات بسهولة</p>
+<h1 class="hidden">تطبيق خدماتي</h1>
+<p class="hidden">منصة ذكية للوصول إلى الخدمات بسهولة</p>
 
-<a class="btn" href="#">تحميل التطبيق</a>
+<a class="btn hidden">تحميل التطبيق</a>
 
-<div class="card">
-<h2>نبذة عن التطبيق</h2>
-<p>تطبيق خدماتي يوفر خدمات متعددة بشكل منظم وسهل.</p>
+<div class="cards">
+
+<div class="card hidden">
+<h2>📌 نبذة</h2>
+<p>يوفر التطبيق خدمات متعددة بطريقة سهلة.</p>
 </div>
 
-<div class="card">
-<h2>مميزات التطبيق</h2>
-<p>✔ تصفح الخدمات</p>
-<p>✔ إرسال الطلبات</p>
-<p>✔ متابعة الطلب</p>
+<div class="card hidden">
+<h2>⚡ المميزات</h2>
+<p>✔ تصفح</p>
+<p>✔ طلب</p>
+<p>✔ متابعة</p>
+</div>
+
+<div class="card hidden">
+<h2>🚀 السرعة</h2>
+<p>تنفيذ سريع وواجهة سهلة.</p>
 </div>
 
 </div>
+
+<!-- سلايدر الصور -->
+<div class="slider hidden">
+<h2>📱 صور التطبيق</h2>
+
+<div class="slides" id="slides">
+<img src="https://via.placeholder.com/300">
+<img src="https://via.placeholder.com/300">
+<img src="https://via.placeholder.com/300">
+</div>
+
+<div class="controls">
+<button onclick="next()">التالي</button>
+<button onclick="prev()">السابق</button>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* انيميشن عند النزول */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+document.querySelectorAll(".hidden").forEach(el=>{
+  observer.observe(el);
+});
+
+/* سلايدر */
+let index=0;
+function next(){
+  index++;
+  move();
+}
+function prev(){
+  index--;
+  move();
+}
+function move(){
+  const slides=document.getElementById("slides");
+  if(index<0) index=0;
+  if(index>2) index=2;
+  slides.style.transform=`translateX(-${index*320}px)`;
+}
+
+</script>
 
 </body>
 </html>
